@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import generateUniqueDigitNumber from "@/utils/randomNumberGenerator";
+import toast from "react-hot-toast";
 
 export default function DigitTestSection({ length, count, onFinish }) {
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -77,8 +78,10 @@ export default function DigitTestSection({ length, count, onFinish }) {
   const handleSubmit = () => {
     if (userInput === numberArray.join("")) {
       setFeedback("Correct");
+      toast.success("Correct")
     } else {
       setFeedback("Wrong");
+      toast.error("Wrong")
     }
   };
 
@@ -122,7 +125,7 @@ export default function DigitTestSection({ length, count, onFinish }) {
           inputMode="numeric"
           pattern="[0-9]*"
           min="0"
-          className="border px-4 py-2 rounded w-full text-center focus:ring-2 focus:ring-indigo-600"
+          className=" outline-none border px-4 py-2 rounded w-full text-center focus:border-indigo-600 transition-all duration-200"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value.replace(/\D/g, ""))}
           onKeyDown={(e) => {
@@ -140,9 +143,6 @@ export default function DigitTestSection({ length, count, onFinish }) {
         >
           Continue
         </button>
-        {feedback && (
-          <div className="mt-3 text-xl font-semibold">{feedback}</div>
-        )}
       </div>
     );
   }

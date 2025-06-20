@@ -44,7 +44,7 @@ export default function Step1() {
                 type="number"
                 min="1"
                 inputMode="numeric"
-                className="border px-4 py-2 w-full rounded focus:ring-2 focus:ring-indigo-600"
+                className=" outline-none border px-4 py-2 w-full rounded focus:ring-2 focus:ring-indigo-600"
                 onChange={(e) => {
                   const val = parseInt(e.target.value, 10);
                   if (val >= 1) {

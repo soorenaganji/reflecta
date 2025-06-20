@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import generateUniqueDigitNumber from "@/utils/randomNumberGenerator";
-
+import toast from "react-hot-toast";
 export default function Step3() {
   const [phase, setPhase] = useState("intro"); // 'intro', 'ready', 'show', 'input', 'done'
   const [number, setNumber] = useState([]);
@@ -48,8 +48,10 @@ export default function Step3() {
   const handleSubmit = () => {
     if (userInput === number.join("")) {
       setFeedback("Correct");
+      toast.success('Correct')
     } else {
       setFeedback("Wrong");
+      toast.error("Wrong")
     }
     // فاز رو تغییر نمی‌دیم تا کاربر input و feedback رو همزمان ببینه
   };
@@ -85,7 +87,7 @@ export default function Step3() {
               inputMode="numeric"
               pattern="[0-9]*"
               min="0"
-              className="border px-4 py-2 rounded w-full text-center focus:ring-2 focus:ring-indigo-600"
+              className="  border px-4 py-2 rounded w-full text-center focus:ring-2 focus:ring-indigo-600"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value.replace(/\D/g, ""))}
               onKeyDown={(e) => {
@@ -95,9 +97,6 @@ export default function Step3() {
               }}
               disabled={!!feedback}
             />
-            {feedback && (
-              <div className="mt-3 text-xl font-semibold">{feedback}</div>
-            )}
             <button
               className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
               onClick={handleSubmit}
