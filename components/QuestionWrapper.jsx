@@ -25,16 +25,16 @@ export default function QuestionWrapper({ steps, onFinish, children }) {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg space-y-4">
+    <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl space-y-4">
       <div className="text-lg font-semibold">{currentStep.label}</div>
 
-      {children({ step: currentStep, onNext: handleAnswer })}
+      {children({ step: currentStep, onNext: handleAnswer, onSubmit: handleNext })}
 
       <div className="w-full px-8 py-4 flex items-center justify-end">
         <button
-          className={`p-2 rounded-xl transition ${
+          className={`p-2 rounded-xl transition duration-200 focus:ring-2 focus:ring-indigo-600 ${
             currentAnswer
-              ? "bg-blue-600 text-white"
+              ? "bg-indigo-600 text-white hover:bg-indigo-700"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
           disabled={!currentAnswer}

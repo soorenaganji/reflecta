@@ -118,15 +118,23 @@ export default function DigitTestSection({ length, count, onFinish }) {
       <div className="space-y-4 text-center">
         <h2 className="text-lg">What was the number?</h2>
         <input
-          type="text"
-          className="border px-4 py-2 rounded w-full text-center"
+          type="number"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          min="0"
+          className="border px-4 py-2 rounded w-full text-center focus:ring-2 focus:ring-indigo-600"
           value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
+          onChange={(e) => setUserInput(e.target.value.replace(/\D/g, ""))}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
           disabled={!!feedback}
           autoFocus
         />
         <button
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
           onClick={handleSubmit}
           disabled={!!feedback}
         >

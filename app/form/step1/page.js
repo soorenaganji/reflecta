@@ -36,14 +36,28 @@ export default function Step1() {
   
   return (
     <QuestionWrapper steps={steps} onFinish={handleFinish}>
-      {({ step, onNext }) => {
+      {({ step, onNext, onSubmit }) => {
         if (step.key === "age") {
           return (
             <div className="space-y-3">
               <input
                 type="number"
-                className="border px-4 py-2 w-full rounded"
-                onChange={(e) => onNext(e.target.value)}
+                min="1"
+                inputMode="numeric"
+                className="border px-4 py-2 w-full rounded focus:ring-2 focus:ring-indigo-600"
+                onChange={(e) => {
+                  const val = parseInt(e.target.value, 10);
+                  if (val >= 1) {
+                    onNext(val);
+                  } else {
+                    onNext(undefined);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    onSubmit();
+                  }
+                }}
               />
             </div>
           );
@@ -61,11 +75,11 @@ export default function Step1() {
                     setSelectedGender(gender);
                     onNext(gender);
                   }}
-                  className={`w-full px-4 py-2 rounded border text-center
+                  className={`w-full px-4 py-2 rounded-xl border text-center transition duration-200 focus:ring-2 focus:ring-indigo-600
                     ${
                       selectedGender === gender
-                        ? "bg-white text-blue-600 border-blue-600 font-semibold"
-                        : "bg-blue-600 text-white border-transparent"
+                        ? "bg-white text-indigo-600 border-indigo-600 font-semibold"
+                        : "bg-indigo-600 text-white border-transparent hover:bg-indigo-700"
                     }`}
                 >
                   {gender}
