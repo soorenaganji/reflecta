@@ -13,7 +13,7 @@ export default function Home() {
       </p>
       <div className="flex items-center justify-center">
         <Link
-          href={"/"}
+          href={"/form"}
           className=" bg-indigo-600 text-white font-bold shadow-xl shadow-indigo-200  px-12 py-6 mx-auto rounded-xl"
         >
           Get Started

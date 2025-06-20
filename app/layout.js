@@ -8,10 +8,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body suppressHydrationWarning className={``}>
         <div className="">
-          <header className="flex items-center justify-around px-1 py-4 h-16 shadow-lg ">
+          <header className="flex items-center justify-around px-1 py-4 h-16 shadow-lg mb-16">
             <h1 className="text-xl font-extrabold text-indigo-700">Reflecta</h1>
           </header>
-          {children}
+          <div className="px-3">{children}</div>
           <footer></footer>
         </div>
       </body>
