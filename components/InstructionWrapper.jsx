@@ -22,7 +22,7 @@ export default function InstructionWrapper({ steps, onFinish, children }) {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg space-y-4">
+    <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl space-y-4">
       <div className="text-lg font-semibold">{currentStep.label}</div>
 
       {/* Render current step content */}
@@ -32,7 +32,7 @@ export default function InstructionWrapper({ steps, onFinish, children }) {
       <div className="w-full flex items-center justify-between">
         {current > 0 ? (
           <button
-            className="p-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+            className="p-2 bg-gray-300 text-gray-700 rounded-xl transition duration-200 hover:bg-gray-400 focus:ring-2 focus:ring-gray-400"
             onClick={handlePrevious}
           >
             Previous
@@ -41,7 +41,7 @@ export default function InstructionWrapper({ steps, onFinish, children }) {
           <div /> // Empty space to keep layout consistent
         )}
         <button
-          className="p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="p-2 bg-indigo-600 text-white rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
           onClick={handleNext}
         >
           {current < steps.length - 1 ? "Next" : "Finish"}
