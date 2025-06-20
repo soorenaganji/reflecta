@@ -21,19 +21,19 @@ export default function Step1() {
     }
   }, [router]);
   const handleFinish = () => {
-    const user = JSON.parse(localStorage.getItem('reflecta-user') || '{}')
-  
+    const user = JSON.parse(localStorage.getItem("reflecta-user") || "{}");
+
     // Generate a unique 5-digit ID
-    const userId = generateUserId()
-  
+    const userId = generateUserId();
+
     // Update user data with ID and save it to localStorage
-    const updatedUser = { ...user, id: userId }
-    localStorage.setItem('reflecta-user', JSON.stringify(updatedUser))
-  
+    const updatedUser = { ...user, id: userId };
+    localStorage.setItem("reflecta-user", JSON.stringify(updatedUser));
+
     // Redirect to step2
-    router.push('/form/step2')
-  }
-  
+    router.push("/form/step2");
+  };
+
   return (
     <QuestionWrapper steps={steps} onFinish={handleFinish}>
       {({ step, onNext }) => {

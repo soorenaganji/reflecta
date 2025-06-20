@@ -77,11 +77,13 @@ export default function Step4() {
 
   // فقط یه بخش فعاله
   return (
+    <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg min-h-[300px] flex items-center justify-center">
     <DigitTestSection
       key={sectionIndex}
       length={SECTIONS[sectionIndex].length}
       count={SECTIONS[sectionIndex].count}
       onFinish={handleSectionFinish}
     />
+    </div>
   );
 }
