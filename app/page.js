@@ -14,7 +14,7 @@ export default function Home() {
       <div className="flex items-center justify-center">
         <Link
           href={"/form"}
-          className=" bg-indigo-600 text-white font-bold shadow-xl shadow-indigo-200  px-12 py-6 mx-auto rounded-xl"
+          className="bg-indigo-600 text-white font-bold shadow-xl shadow-indigo-200 px-12 py-6 mx-auto rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
         >
           Get Started
         </Link>

@@ -56,7 +56,7 @@ export default function Step4() {
     });
   
     return (
-      <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg min-h-[300px] flex flex-col items-center justify-center space-y-4">
+      <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
         <div className="text-xl font-bold">Test finished</div>
         <div>
           <pre className="text-left">
@@ -64,7 +64,7 @@ export default function Step4() {
           </pre>
         </div>
         <button
-          className="bg-gray-700 text-white px-4 py-2 rounded"
+          className="bg-gray-700 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-gray-600"
           onClick={() => router.push("/")}
         >
           Back to Home

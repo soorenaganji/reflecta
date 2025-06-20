@@ -81,17 +81,25 @@ export default function Step3() {
           <div className="space-y-4 text-center">
             <h2 className="text-lg">What was the number?</h2>
             <input
-              type="text"
-              className="border px-4 py-2 rounded w-full text-center"
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              min="0"
+              className="border px-4 py-2 rounded w-full text-center focus:ring-2 focus:ring-indigo-600"
               value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
+              onChange={(e) => setUserInput(e.target.value.replace(/\D/g, ""))}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSubmit();
+                }
+              }}
               disabled={!!feedback}
             />
             {feedback && (
               <div className="mt-3 text-xl font-semibold">{feedback}</div>
             )}
             <button
-              className="bg-blue-600 text-white px-4 py-2 rounded"
+              className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
               onClick={handleSubmit}
               disabled={!!feedback}
             >
@@ -108,7 +116,7 @@ export default function Step3() {
               The real test begins now. Concentrate!
             </p>
             <button
-              className="bg-green-600 text-white px-4 py-2 rounded"
+              className="bg-green-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-green-700 focus:ring-2 focus:ring-green-600"
               onClick={() => router.push("/form/step4")}
             >
               Start Test
@@ -121,7 +129,7 @@ export default function Step3() {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg min-h-[300px] flex items-center justify-center">
+    <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex items-center justify-center">
       {renderContent()}
     </div>
   );
