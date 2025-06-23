@@ -78,10 +78,10 @@ export default function DigitTestSection({ length, count, onFinish }) {
   const handleSubmit = () => {
     if (userInput === numberArray.join("")) {
       setFeedback("Correct");
-      toast.success("Correct")
+      toast.success("Correct");
     } else {
       setFeedback("Wrong");
-      toast.error("Wrong")
+      toast.error("Wrong");
     }
   };
 

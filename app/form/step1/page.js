@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import generateUserId from "@/utils/generateUserId";
 
 const steps = [
-  { key: "age", label: "How old are you?" },
+  { key: "code", label: "What was your username from the former test?" },
   { key: "gender", label: "What is your gender?" },
 ];
 
@@ -16,7 +16,7 @@ export default function Step1() {
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("reflecta-user") || "{}");
-    if (userData.age && userData.gender && userData.id) {
+    if (userData.code && userData.gender && userData.id) {
       router.replace("/form/step2");
     }
   }, [router]);
@@ -37,21 +37,14 @@ export default function Step1() {
   return (
     <QuestionWrapper steps={steps} onFinish={handleFinish}>
       {({ step, onNext, onSubmit }) => {
-        if (step.key === "age") {
+        if (step.key === "code") {
           return (
             <div className="space-y-3">
               <input
-                type="number"
-                min="1"
-                inputMode="numeric"
+                type="text"
                 className=" outline-none border px-4 py-2 w-full rounded focus:ring-2 focus:ring-indigo-600"
                 onChange={(e) => {
-                  const val = parseInt(e.target.value, 10);
-                  if (val >= 1) {
-                    onNext(val);
-                  } else {
-                    onNext(undefined);
-                  }
+                  onNext(e.target.value);
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {

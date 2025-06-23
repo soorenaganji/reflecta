@@ -5,26 +5,23 @@ import generateUserId from "@/utils/generateUserId";
 
 export async function POST(req) {
   await connectToDB();
-  const { age, gender, id, score } = await req.json();
+  const { code, gender, id, score } = await req.json();
   let userName = id;
-  console.log(age);
-  console.log(gender);
-  console.log(id);
-  console.log(score);
   // اعتبارسنجی اولیه
   if (
-    typeof +age !== "number" ||
-    isNaN(age) ||
-    age < 5 ||
-    age > 120 ||
     typeof gender !== "string" ||
-    !["Male", "Female"].includes(gender) ||
+    !["Male", "Female", "Prefer Not to Say", "non-binary"].includes(gender) ||
     typeof id !== "string" ||
     !/^\d{5}$/.test(id) ||
     typeof score !== "object" ||
     typeof +score.phase1 !== "number" ||
     typeof +score.phase2 !== "number" ||
-    typeof +score.phase3 !== "number"
+    typeof +score.phase3 !== "number" ||
+    typeof +score.phase4 !== "number" ||
+    typeof +score.phase5 !== "number" ||
+    typeof +score.phase6 !== "number" ||
+    typeof +score.phase7 !== "number" ||
+    typeof +score.phase8 !== "number"
   ) {
     return NextResponse.json(
       { error: "Invalid input format" },
@@ -40,7 +37,7 @@ export async function POST(req) {
 
   // ساخت یوزر جدید
   const newUser = await User.create({
-    age,
+    code,
     gender,
     username: userName,
     score,

@@ -8,7 +8,8 @@ export default function Step2Layout({ children }) {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('reflecta-user') || '{}')
-    if (!user.age || !user.gender || !user.id) {
+    if (!user.code || !user.gender || !user.id) {
+      console.log(sth)
       router.replace('/form/step1')
     }
   }, [])

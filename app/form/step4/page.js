@@ -7,6 +7,11 @@ const SECTIONS = [
   { length: 2, count: 2, key: "phase1" },
   { length: 3, count: 2, key: "phase2" },
   { length: 4, count: 2, key: "phase3" },
+  { length: 5, count: 2, key: "phase4" },
+  { length: 6, count: 2, key: "phase5" },
+  { length: 7, count: 2, key: "phase6" },
+  { length: 8, count: 2, key: "phase7" },
+  { length: 9, count: 2, key: "phase8" },
 ];
 
 export default function Step4() {
@@ -33,7 +38,7 @@ export default function Step4() {
     // اطلاعات کاربر و نتیجه رو بگیر
     const user = JSON.parse(localStorage.getItem("reflecta-user") || "{}");
     const resultToSave = {
-      age: user.age,
+      code: user.code,
       gender: user.gender,
       id: user.id,
       score: { ...result },
@@ -43,7 +48,7 @@ export default function Step4() {
     localStorage.setItem("result", JSON.stringify(resultToSave));
     // reflecta-user رو پاک کن
     localStorage.removeItem("reflecta-user");
-  
+  console.log(resultToSave)
     // داده رو بفرست به سرور
     fetch('/api/register', {
       method: 'POST',
@@ -60,7 +65,7 @@ export default function Step4() {
         <div className="text-xl font-bold">Test finished</div>
         <div>
           <pre className="text-left">
-            Your Score is: {result?.phase1 + result?.phase2 + result?.phase3}/6
+            Your Score is: {result?.phase1 + result?.phase2 + result?.phase3 +result?.phase4 +result?.phase5 +result?.phase6 +result?.phase7 +result?.phase8}/16
           </pre>
         </div>
         <button

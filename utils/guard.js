@@ -9,7 +9,7 @@ export const useRequireStep1 = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("reflecta-user") || "{}");
     console.log(user);
-    if (!user.age || !user.gender || !user.id) {
+    if (!user.code || !user.gender || !user.id) {
       router.replace("/form/step1");
     }
   }, []);
