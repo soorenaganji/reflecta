@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import generateUniqueDigitNumber from "@/utils/randomNumberGenerator";
 import toast from "react-hot-toast";
+import { useLanguage } from "@/components/LanguageProvider";
 export default function Step3() {
   const [phase, setPhase] = useState("intro"); // 'intro', 'ready', 'show', 'input', 'done'
   const [number, setNumber] = useState([]);
@@ -11,6 +12,7 @@ export default function Step3() {
   const [userInput, setUserInput] = useState("");
   const [feedback, setFeedback] = useState(""); // string: "" | "Correct" | "Wrong"
   const router = useRouter();
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (phase === "ready") {
@@ -48,10 +50,10 @@ export default function Step3() {
   const handleSubmit = () => {
     if (userInput === number.join("")) {
       setFeedback("Correct");
-      toast.success('Correct')
+      toast.success(t("correct"));
     } else {
       setFeedback("Wrong");
-      toast.error("Wrong")
+      toast.error(t("wrong"));
     }
     // فاز رو تغییر نمی‌دیم تا کاربر input و feedback رو همزمان ببینه
   };
@@ -61,17 +63,17 @@ export default function Step3() {
       case "intro":
         return (
           <div className="space-y-4 text-center">
-            <h1 className="text-xl font-bold">Memorize the Digits</h1>
+            <h1 className="text-xl font-bold">{t("memorize_digits_title")}</h1>
             <button
               className="bg-blue-600 text-white px-4 py-2 rounded"
               onClick={() => setPhase("ready")}
             >
-              Start
+              {t("start")}
             </button>
           </div>
         );
       case "ready":
-        return <h2 className="text-center text-lg">Get ready now!</h2>;
+        return <h2 className="text-center text-lg">{t("get_ready")}</h2>;
       case "show":
         return (
           <h1 className="text-center text-4xl font-mono">
@@ -81,7 +83,7 @@ export default function Step3() {
       case "input":
         return (
           <div className="space-y-4 text-center">
-            <h2 className="text-lg">What was the number?</h2>
+            <h2 className="text-lg">{t("number_question")}</h2>
             <input
               type="number"
               inputMode="numeric"
@@ -102,7 +104,7 @@ export default function Step3() {
               onClick={handleSubmit}
               disabled={!!feedback}
             >
-              Continue
+              {t("continue")}
             </button>
           </div>
         );
@@ -110,15 +112,15 @@ export default function Step3() {
         return (
           <div className="space-y-4 text-center">
             <p className="text-lg">
-              Now you have done your training trial
+              {t("training_done")}
               <br />
-              The real test begins now. Concentrate!
+              {t("training_concentration")}
             </p>
             <button
               className="bg-green-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-green-700 focus:ring-2 focus:ring-green-600"
               onClick={() => router.push("/form/step4")}
             >
-              Start Test
+              {t("start_test")}
             </button>
           </div>
         );

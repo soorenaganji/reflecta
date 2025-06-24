@@ -4,15 +4,17 @@ import { useRouter } from "next/navigation";
 import QuestionWrapper from "@/components/QuestionWrapper";
 import { useEffect, useState } from "react";
 import generateUserId from "@/utils/generateUserId";
-
-const steps = [
-  { key: "code", label: "What was your username from the former test?" },
-  { key: "gender", label: "What is your gender?" },
-];
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function Step1() {
   const router = useRouter();
   const [selectedGender, setSelectedGender] = useState("");
+  const { t } = useLanguage();
+
+  const steps = [
+    { key: "code", label: t("step1_code_label") },
+    { key: "gender", label: t("step1_gender_label") },
+  ];
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("reflecta-user") || "{}");
@@ -57,7 +59,12 @@ export default function Step1() {
         }
 
         if (step.key === "gender") {
-          const genders = ["Male", "Female", "Prefer Not to Say", "non-binary"];
+          const genders = [
+            t("gender_male"),
+            t("gender_female"),
+            t("gender_not_say"),
+            t("gender_non_binary"),
+          ];
 
           return (
             <div className="space-y-2">
