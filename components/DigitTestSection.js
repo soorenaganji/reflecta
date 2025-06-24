@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import generateUniqueDigitNumber from "@/utils/randomNumberGenerator";
 import toast from "react-hot-toast";
 
-export default function DigitTestSection({ length, count, onFinish }) {
+export default function DigitTestSection({
+  length,
+  count,
+  onFinish,
+  mistakeCount,
+  setMistakeCount,
+  setIsDone,
+}) {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [numberArray, setNumberArray] = useState([]);
   const [currentDigitIndex, setCurrentDigitIndex] = useState(0);
@@ -81,7 +88,13 @@ export default function DigitTestSection({ length, count, onFinish }) {
       toast.success("Correct");
     } else {
       setFeedback("Wrong");
+      setMistakeCount(mistakeCount + 1);
+      console.log(mistakeCount);
+      
       toast.error("Wrong");
+    }
+    if (mistakeCount >= 2) {
+      setIsDone(true);
     }
   };
 
