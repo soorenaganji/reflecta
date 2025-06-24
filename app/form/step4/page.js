@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import DigitTestSection from "@/components/DigitTestSection";
 import heartIcon from "@/public/heart.svg";
 import Image from "next/image";
+import { useLanguage } from "@/components/LanguageProvider";
 const SECTIONS = [
   { length: 2, count: 2, key: "phase1" },
   { length: 3, count: 2, key: "phase2" },
@@ -31,6 +32,7 @@ export default function Step4() {
   const [mistakeCount, setMistakeCount] = useState(0);
   const [shouldShake, setShouldShake] = useState(false);
   const router = useRouter();
+  const { t } = useLanguage();
   const prevMistake = useRef(mistakeCount);
   useEffect(() => {
     // فقط وقتی mistakeCount زیاد میشه (افزایشی)
@@ -85,10 +87,10 @@ export default function Step4() {
 
     return (
       <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
-        <div className="text-xl font-bold">Test finished</div>
+        <div className="text-xl font-bold">{t("test_finished")}</div>
         <div>
           <pre className="text-left">
-            Your Score is:{" "}
+            {t("your_score")}{" "}
             {result?.phase1 +
               result?.phase2 +
               result?.phase3 +
@@ -104,7 +106,7 @@ export default function Step4() {
           className="bg-gray-700 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-gray-600"
           onClick={() => router.push("/")}
         >
-          Back to Home
+          {t("back_home")}
         </button>
       </div>
     );

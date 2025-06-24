@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import generateUniqueDigitNumber from "@/utils/randomNumberGenerator";
 import toast from "react-hot-toast";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function DigitTestSection({
   length,
@@ -17,6 +18,7 @@ export default function DigitTestSection({
   const [phase, setPhase] = useState("intro"); // intro > ready > show > input
   const [feedback, setFeedback] = useState("");
   const [score, setScore] = useState(0);
+  const { t } = useLanguage();
 
   // شروع سوال جدید: فاز رو ببر به intro
   useEffect(() => {
@@ -85,13 +87,13 @@ export default function DigitTestSection({
   const handleSubmit = () => {
     if (userInput === numberArray.join("")) {
       setFeedback("Correct");
-      toast.success("Correct");
+      toast.success(t("correct"));
     } else {
       setFeedback("Wrong");
       setMistakeCount(mistakeCount + 1);
       console.log(mistakeCount);
-      
-      toast.error("Wrong");
+
+      toast.error(t("wrong"));
     }
     if (mistakeCount >= 2) {
       setIsDone(true);
@@ -102,21 +104,21 @@ export default function DigitTestSection({
   if (phase === "intro") {
     return (
       <div className="flex items-center justify-center h-[150px] text-xl font-bold">
-        Memorize digits
+        {t("memorize_digits")}
       </div>
     );
   }
   if (phase === "memorize") {
     return (
       <div className="flex items-center justify-center h-[150px] text-xl font-bold">
-        Memorize digits
+        {t("memorize_digits")}
       </div>
     );
   }
   if (phase === "getready") {
     return (
       <div className="flex items-center justify-center h-[150px] text-lg font-bold">
-        Get ready now!
+        {t("get_ready")}
       </div>
     );
   }
@@ -132,7 +134,7 @@ export default function DigitTestSection({
   if (phase === "input") {
     return (
       <div className="space-y-4 text-center">
-        <h2 className="text-lg">What was the number?</h2>
+        <h2 className="text-lg">{t("number_question")}</h2>
         <input
           type="number"
           inputMode="numeric"
@@ -154,7 +156,7 @@ export default function DigitTestSection({
           onClick={handleSubmit}
           disabled={!!feedback}
         >
-          Continue
+          {t("continue")}
         </button>
       </div>
     );

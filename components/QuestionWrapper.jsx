@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function QuestionWrapper({ steps, onFinish, children }) {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState({});
+  const { t } = useLanguage();
 
   const currentStep = steps[current];
   const currentAnswer = answers[currentStep.key];
@@ -40,7 +42,7 @@ export default function QuestionWrapper({ steps, onFinish, children }) {
           disabled={!currentAnswer}
           onClick={handleNext}
         >
-          Next
+          {t("next")}
         </button>
       </div>
     </div>
