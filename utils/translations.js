@@ -36,9 +36,6 @@ export const translations = {
     previous: "Previous",
     next: "Next",
     finish: "Finish",
-    forward_score: "Forward score",
-    backward_score: "Backward score",
-    rest_before_backward: "Take a short rest, then continue with the backward task",
   },
   it: {
     beforeStartTitle: "Prima di iniziare...",
@@ -77,8 +74,5 @@ export const translations = {
     previous: "Precedente",
     next: "Avanti",
     finish: "Fine",
-    forward_score: "Punteggio forward",
-    backward_score: "Punteggio backward",
-    rest_before_backward: "Fai una breve pausa, poi continua con il test backward",
   },
 };

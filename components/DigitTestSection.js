@@ -7,8 +7,9 @@ export default function DigitTestSection({
   length,
   count,
   onFinish,
-  mode = "forward",
-  usedSequences,
+  mistakeCount,
+  setMistakeCount,
+  setIsDone,
 }) {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [numberArray, setNumberArray] = useState([]);
@@ -19,17 +20,17 @@ export default function DigitTestSection({
   const [score, setScore] = useState(0);
   const { t } = useLanguage();
 
-  // شروع سوال جدید
+  // شروع سوال جدید: فاز رو ببر به intro
   useEffect(() => {
     if (phase === "ready") {
-      const num = generateUniqueDigitNumber(length, usedSequences);
+      const num = generateUniqueDigitNumber(length);
       setNumberArray(num);
       setCurrentDigitIndex(0);
       setUserInput("");
       setFeedback("");
       setPhase("show");
     }
-  }, [phase, length, questionIndex, usedSequences]);
+  }, [phase, length, questionIndex]);
 
   // ترتیب نمایش پیام‌ها قبل از شروع سوال جدید
   useEffect(() => {
@@ -65,16 +66,17 @@ export default function DigitTestSection({
   useEffect(() => {
     if (phase === "input" && feedback) {
       const timer = setTimeout(() => {
-        const isCorrect = feedback === "Correct";
-        if (isCorrect) {
-          setScore((s) => s + 1);
-        }
-        if (questionIndex + 1 < count) {
-          setQuestionIndex((q) => q + 1);
-          setFeedback("");
-          setPhase("intro");
+        if (feedback === "Correct") {
+          if (questionIndex + 1 < count) {
+            setScore((s) => s + 1);
+            setQuestionIndex((q) => q + 1);
+            setFeedback("");
+            setPhase("intro"); // شروع مجدد با پیام‌های قبل عدد
+          } else {
+            onFinish(score + 1);
+          }
         } else {
-          onFinish(isCorrect ? score + 1 : score);
+          onFinish(score);
         }
       }, 1500);
       return () => clearTimeout(timer);
@@ -83,16 +85,18 @@ export default function DigitTestSection({
 
   // چک جواب کاربر
   const handleSubmit = () => {
-    const correctSequence =
-      mode === "backward"
-        ? [...numberArray].reverse().join("")
-        : numberArray.join("");
-    if (userInput === correctSequence) {
+    if (userInput === numberArray.join("")) {
       setFeedback("Correct");
       toast.success(t("correct"));
     } else {
       setFeedback("Wrong");
+      setMistakeCount(mistakeCount + 1);
+      console.log(mistakeCount);
+
       toast.error(t("wrong"));
+    }
+    if (mistakeCount >= 2) {
+      setIsDone(true);
     }
   };
 
