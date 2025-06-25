@@ -14,14 +14,8 @@ export async function POST(req) {
     typeof id !== "string" ||
     !/^\d{5}$/.test(id) ||
     typeof score !== "object" ||
-    typeof +score.phase1 !== "number" ||
-    typeof +score.phase2 !== "number" ||
-    typeof +score.phase3 !== "number" ||
-    typeof +score.phase4 !== "number" ||
-    typeof +score.phase5 !== "number" ||
-    typeof +score.phase6 !== "number" ||
-    typeof +score.phase7 !== "number" ||
-    typeof +score.phase8 !== "number"
+    typeof +score.forward !== "number" ||
+    typeof +score.backward !== "number"
   ) {
     return NextResponse.json(
       { error: "Invalid input format" },
