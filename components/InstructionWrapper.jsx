@@ -34,7 +34,7 @@ export default function InstructionWrapper({ steps, onFinish, children }) {
       <div className="w-full flex items-center justify-between">
         {current > 0 ? (
           <button
-            className="p-2 bg-gray-300 text-gray-700 rounded-xl transition duration-200 hover:bg-gray-400 focus:ring-2 focus:ring-gray-400"
+            className="px-4 py-2 cursor-pointer bg-gray-300 text-gray-700 rounded-lg transition duration-200 hover:bg-gray-400"
             onClick={handlePrevious}
           >
             {t("previous")}
@@ -43,7 +43,7 @@ export default function InstructionWrapper({ steps, onFinish, children }) {
           <div /> // Empty space to keep layout consistent
         )}
         <button
-          className="p-2 bg-indigo-600 text-white rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
+          className="px-4 py-2 cursor-pointer bg-indigo-600 text-white rounded-lg transition duration-200 hover:bg-indigo-700 "
           onClick={handleNext}
         >
           {current < steps.length - 1 ? t("next") : t("finish")}

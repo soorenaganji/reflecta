@@ -30,11 +30,15 @@ export default function QuestionWrapper({ steps, onFinish, children }) {
     <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl space-y-4">
       <div className="text-lg font-semibold">{currentStep.label}</div>
 
-      {children({ step: currentStep, onNext: handleAnswer, onSubmit: handleNext })}
+      {children({
+        step: currentStep,
+        onNext: handleAnswer,
+        onSubmit: handleNext,
+      })}
 
-      <div className="w-full px-8 py-4 flex items-center justify-end">
+      <div className="w-full px-2 py-4 flex items-center justify-end">
         <button
-          className={`p-2 rounded-xl transition duration-200 focus:ring-2 focus:ring-indigo-600 ${
+          className={`px-4 py-2 cursor-pointer rounded-lg transition duration-200 focus:ring-2 focus:ring-indigo-600 ${
             currentAnswer
               ? "bg-indigo-600 text-white hover:bg-indigo-700"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"

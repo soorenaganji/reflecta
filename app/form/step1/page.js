@@ -44,7 +44,7 @@ export default function Step1() {
             <div className="space-y-3">
               <input
                 type="text"
-                className=" outline-none border px-4 py-2 w-full rounded focus:ring-2 focus:ring-indigo-600"
+                className=" outline-none border px-4 py-2 w-full rounded focus:border-indigo-600"
                 onChange={(e) => {
                   onNext(e.target.value);
                 }}
@@ -75,7 +75,7 @@ export default function Step1() {
                     setSelectedGender(gender);
                     onNext(gender);
                   }}
-                  className={`w-full px-4 py-2 rounded-xl border text-center transition duration-200 focus:ring-2 focus:ring-indigo-600
+                  className={`w-full px-4 py-2 rounded-xl border text-center transition duration-200 outline-none 
                     ${
                       selectedGender === gender
                         ? "bg-white text-indigo-600 border-indigo-600 font-semibold"
