@@ -40,7 +40,7 @@ export default function Step4() {
   const prevMistake = useRef(mistakeCount);
   useEffect(() => {
     // فقط وقتی mistakeCount زیاد میشه (افزایشی)
-    if (mistakeCount > prevMistake.current) {
+    if (mistakeCount >= prevMistake.current) {
       setShouldShake(true);
       const timer = setTimeout(() => {
         setShouldShake(false);
@@ -114,8 +114,8 @@ export default function Step4() {
         <div className="text-xl font-bold">{t("test_finished")}</div>
         <div>
           <pre className="text-left">
-            {t("your_score")} {" "}
-            Forward: {result.phase1[0] +
+            {t("your_score")} Forward:{" "}
+            {result.phase1[0] +
               result.phase2[0] +
               result.phase3[0] +
               result.phase4[0] +
@@ -123,7 +123,8 @@ export default function Step4() {
               result.phase6[0] +
               result.phase7[0] +
               result.phase8[0]}
-            /9 , Backward: {result.phase1[1] +
+            /9 , Backward:{" "}
+            {result.phase1[1] +
               result.phase2[1] +
               result.phase3[1] +
               result.phase4[1] +
@@ -185,6 +186,7 @@ export default function Step4() {
       )}
       {awaitingContinue && (
         <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
+          // here
           <button
             className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
             onClick={() => setAwaitingContinue(false)}
