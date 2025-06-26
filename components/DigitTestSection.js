@@ -9,7 +9,8 @@ export default function DigitTestSection({
   onFinish,
   mistakeCount,
   setMistakeCount,
-  setIsDone,
+  direction = "forward",
+  generateSequence = generateUniqueDigitNumber,
 }) {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [numberArray, setNumberArray] = useState([]);
@@ -23,14 +24,14 @@ export default function DigitTestSection({
   // شروع سوال جدید: فاز رو ببر به intro
   useEffect(() => {
     if (phase === "ready") {
-      const num = generateUniqueDigitNumber(length);
+      const num = generateSequence(length);
       setNumberArray(num);
       setCurrentDigitIndex(0);
       setUserInput("");
       setFeedback("");
       setPhase("show");
     }
-  }, [phase, length, questionIndex]);
+  }, [phase, length, questionIndex, generateSequence]);
 
   // ترتیب نمایش پیام‌ها قبل از شروع سوال جدید
   useEffect(() => {
@@ -66,17 +67,15 @@ export default function DigitTestSection({
   useEffect(() => {
     if (phase === "input" && feedback) {
       const timer = setTimeout(() => {
-        if (feedback === "Correct") {
-          if (questionIndex + 1 < count) {
-            setScore((s) => s + 1);
-            setQuestionIndex((q) => q + 1);
-            setFeedback("");
-            setPhase("intro"); // شروع مجدد با پیام‌های قبل عدد
-          } else {
-            onFinish(score + 1);
-          }
+        const increment = feedback === "Correct" ? 1 : 0;
+        const newScore = score + increment;
+        if (questionIndex + 1 < count) {
+          setScore(newScore);
+          setQuestionIndex((q) => q + 1);
+          setFeedback("");
+          setPhase("intro");
         } else {
-          onFinish(score);
+          onFinish(newScore);
         }
       }, 1500);
       return () => clearTimeout(timer);
@@ -85,18 +84,18 @@ export default function DigitTestSection({
 
   // چک جواب کاربر
   const handleSubmit = () => {
-    if (userInput === numberArray.join("")) {
+    const correct =
+      direction === "forward"
+        ? numberArray.join("")
+        : numberArray.slice().reverse().join("");
+
+    if (userInput === correct) {
       setFeedback("Correct");
       toast.success(t("correct"));
     } else {
       setFeedback("Wrong");
       setMistakeCount(mistakeCount + 1);
-      console.log(mistakeCount);
-
       toast.error(t("wrong"));
-    }
-    if (mistakeCount >= 2) {
-      setIsDone(true);
     }
   };
 
