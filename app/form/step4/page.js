@@ -185,6 +185,7 @@ export default function Step4() {
       )}
       {awaitingContinue && (
         <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
+          <p className="text-center">{t("backward_intro")}</p>
           <button
             className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
             onClick={() => setAwaitingContinue(false)}

@@ -24,6 +24,8 @@ export const translations = {
     get_ready: "Get ready now!",
     number_question: "What was the number?",
     continue: "Continue",
+    backward_intro:
+      "The backward test will begin shortly. You have to write the displayed digits backwards.",
     training_done: "Now you have done your training trial",
     training_concentration: "The real test begins now. Concentrate!",
     start_test: "Start Test",
@@ -62,6 +64,8 @@ export const translations = {
     get_ready: "Preparati!",
     number_question: "Qual era il numero?",
     continue: "Continua",
+    backward_intro:
+      "Il test all'indietro inizier\u00e0 a breve. Devi scrivere le cifre mostrate al contrario.",
     training_done: "Hai completato la prova di allenamento",
     training_concentration: "Ora inizia il test reale. Concentrati!",
     start_test: "Inizia il test",
