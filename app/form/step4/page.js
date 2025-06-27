@@ -113,8 +113,9 @@ export default function Step4() {
       <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
         <div className="text-xl font-bold">{t("test_finished")}</div>
         <div>
-          <pre className="text-left">
-            {t("your_score")} Forward:{" "}
+          <pre className="text-left ">{t("your_score")}</pre>
+          <p>
+            Forward:{" "}
             {result.phase1[0] +
               result.phase2[0] +
               result.phase3[0] +
@@ -123,7 +124,10 @@ export default function Step4() {
               result.phase6[0] +
               result.phase7[0] +
               result.phase8[0]}
-            /9 , Backward:{" "}
+            /16
+          </p>
+          <p>
+            Backward:{" "}
             {result.phase1[1] +
               result.phase2[1] +
               result.phase3[1] +
@@ -132,8 +136,8 @@ export default function Step4() {
               result.phase6[1] +
               result.phase7[1] +
               result.phase8[1]}
-            /9
-          </pre>
+            /16
+          </p>
         </div>
         <button
           className="bg-gray-700 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-gray-600"
