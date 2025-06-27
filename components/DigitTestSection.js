@@ -94,7 +94,7 @@ export default function DigitTestSection({
       toast.success(t("correct"));
     } else {
       setFeedback("Wrong");
-      setMistakeCount(mistakeCount + 1);
+      setMistakeCount((prev) => prev + 1);
       toast.error(t("wrong"));
     }
   };

@@ -18,6 +18,7 @@ const SECTIONS = [
 ];
 
 export default function Step4() {
+  const MAX_MISTAKES = 3;
   const [task, setTask] = useState("forward");
   const [awaitingContinue, setAwaitingContinue] = useState(false);
   const [sectionIndex, setSectionIndex] = useState(0);
@@ -39,16 +40,15 @@ export default function Step4() {
   const usedSequences = useRef(new Set());
   const prevMistake = useRef(mistakeCount);
   useEffect(() => {
-    // فقط وقتی mistakeCount زیاد میشه (افزایشی)
-    if (mistakeCount >= prevMistake.current) {
-      setShouldShake(true);
-      const timer = setTimeout(() => {
-        setShouldShake(false);
-      }, 3000);
-      // تمیزکاری تایمر
-      return () => clearTimeout(timer);
-    }
+    console.log(mistakeCount);
+    console.log(prevMistake);
+    setShouldShake(true);
+    const timer = setTimeout(() => {
+      setShouldShake(false);
+    }, 3000);
+
     prevMistake.current = mistakeCount;
+    return () => clearTimeout(timer);
   }, [mistakeCount]);
   // این تابع رو به DigitTestSection می‌دیم
   const handleSectionFinish = (score) => {
@@ -58,7 +58,8 @@ export default function Step4() {
       [key]: task === "forward" ? [score, prev[key][1]] : [prev[key][0], score],
     }));
 
-    if (score === 0) {
+    if (mistakeCount >= MAX_MISTAKES) {
+      console.log("you reached max mistakes");
       if (task === "forward") {
         setTask("backward");
         setSectionIndex(0);
@@ -72,7 +73,6 @@ export default function Step4() {
 
     if (sectionIndex + 1 < SECTIONS.length) {
       setSectionIndex(sectionIndex + 1);
-      setMistakeCount(0);
     } else if (task === "forward") {
       setTask("backward");
       setSectionIndex(0);
@@ -151,7 +151,7 @@ export default function Step4() {
       {!awaitingContinue && (
         <>
           <div className="w-full flex items-center justify-center gap-6">
-            {Array.from({ length: 3 - mistakeCount }).map((_, i) => (
+            {Array.from({ length: MAX_MISTAKES - mistakeCount }).map((_, i) => (
               <Image
                 key={i}
                 src={heartIcon}
@@ -186,7 +186,7 @@ export default function Step4() {
       )}
       {awaitingContinue && (
         <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
-          // here
+          <p className="text-center">{t("backward_intro")}</p>
           <button
             className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
             onClick={() => setAwaitingContinue(false)}

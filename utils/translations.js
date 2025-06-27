@@ -35,6 +35,8 @@ export const translations = {
     wrong: "Wrong",
     previous: "Previous",
     next: "Next",
+    backward_intro:
+    "The backward test will begin shortly. You have to write the displayed digits backwards.",
     finish: "Finish",
   },
   it: {
@@ -73,6 +75,8 @@ export const translations = {
     wrong: "Sbagliato",
     previous: "Precedente",
     next: "Avanti",
+    backward_intro:
+    "Il test all'indietro inizier\u00e0 a breve. Devi scrivere le cifre mostrate al contrario.",
     finish: "Fine",
   },
 };
