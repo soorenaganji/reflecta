@@ -11,7 +11,7 @@ export default function LayoutShell({ children }) {
     <>
       <Toaster />
       <div>
-        <header className="flex items-center justify-between px-1 py-4 h-16 shadow-lg mb-16">
+        <header className="flex items-center justify-between px-1 py-4 h-16 shadow-lg">
           <Link href="/">
             <Image src={logo} width={120} height={60} alt="logo" />
           </Link>
@@ -42,7 +42,7 @@ export default function LayoutShell({ children }) {
             </div>
           </div>
         </header>
-        <div className="px-3">{children}</div>
+        <div className="">{children}</div>
         <footer></footer>
       </div>
     </>
