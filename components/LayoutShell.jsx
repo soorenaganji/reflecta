@@ -10,7 +10,7 @@ export default function LayoutShell({ children }) {
   return (
     <>
       <Toaster />
-      <div>
+      <div className={lang === "fa" ? "fa-font" : ""}>
         <header className="flex items-center justify-between px-1 py-4 h-16 shadow-lg">
           <Link href="/">
             <Image src={logo} width={120} height={60} alt="logo" />
@@ -29,15 +29,15 @@ export default function LayoutShell({ children }) {
                 IT
               </button>
               <button
-                onClick={() => setLang("en")}
+                onClick={() => setLang("fa")}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition 
             ${
-              lang === "en"
+              lang === "fa"
                 ? "bg-indigo-500 text-white shadow font-bold"
                 : "text-gray-500 hover:text-indigo-600"
             }`}
               >
-                EN
+                FA
               </button>
             </div>
           </div>

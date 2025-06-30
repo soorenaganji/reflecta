@@ -1,6 +1,9 @@
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import LayoutShell from "@/components/LayoutShell";
+import { Vazirmatn } from "next/font/google";
+
+const vazir = Vazirmatn({ subsets: ["arabic"], variable: "--font-vazir" });
 
 export const metadata = {
   title: "Reflecta",
@@ -9,7 +12,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="fa" className={vazir.variable}>
       <body suppressHydrationWarning>
         <LanguageProvider>
           <LayoutShell>{children}</LayoutShell>
