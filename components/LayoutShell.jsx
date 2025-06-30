@@ -10,8 +10,11 @@ export default function LayoutShell({ children }) {
   return (
     <>
       <Toaster />
-      <div className={lang === "fa" ? "fa-font" : ""}>
-        <header className="flex items-center justify-between px-1 py-4 h-16 shadow-lg">
+      <div className={lang === "fa" ? "fa-font" : ""} dir={lang === "fa" ? "rtl" : "ltr"}>
+        <header
+          className="flex items-center justify-between px-1 py-4 h-16 shadow-lg"
+          dir="ltr"
+        >
           <Link href="/">
             <Image src={logo} width={120} height={60} alt="logo" />
           </Link>
