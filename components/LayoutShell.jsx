@@ -40,7 +40,7 @@ export default function LayoutShell({ children }) {
                 : "text-gray-500 hover:text-indigo-600"
             }`}
               >
-                FA
+                فا
               </button>
             </div>
           </div>
