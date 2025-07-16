@@ -2,8 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import DigitTestSection from "@/components/DigitTestSection";
-import heartIcon from "@/public/heart.svg";
-import Image from "next/image";
 import { useLanguage } from "@/components/LanguageProvider";
 import generateUniqueDigitNumber from "@/utils/randomNumberGenerator";
 const SECTIONS = [
@@ -34,22 +32,9 @@ export default function Step4() {
   });
   const [isDone, setIsDone] = useState(false);
   const [mistakeCount, setMistakeCount] = useState(0);
-  const [shouldShake, setShouldShake] = useState(false);
   const router = useRouter();
   const { t } = useLanguage();
   const usedSequences = useRef(new Set());
-  const prevMistake = useRef(mistakeCount);
-  useEffect(() => {
-    console.log(mistakeCount);
-    console.log(prevMistake);
-    setShouldShake(true);
-    const timer = setTimeout(() => {
-      setShouldShake(false);
-    }, 3000);
-
-    prevMistake.current = mistakeCount;
-    return () => clearTimeout(timer);
-  }, [mistakeCount]);
   // این تابع رو به DigitTestSection می‌دیم
   const handleSectionFinish = (score) => {
     const key = SECTIONS[sectionIndex].key;
@@ -154,19 +139,6 @@ export default function Step4() {
     <>
       {!awaitingContinue && (
         <>
-          <div className="w-full flex items-center justify-center gap-6">
-            {Array.from({ length: MAX_MISTAKES - mistakeCount }).map((_, i) => (
-              <Image
-                key={i}
-                src={heartIcon}
-                width={24}
-                height={24}
-                alt="heart"
-                style={{ display: "inline", marginRight: "2px" }}
-                className={shouldShake ? " shake" : ""}
-              />
-            ))}
-          </div>
           <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg min-h-[300px] flex items-center justify-center">
             <DigitTestSection
               mistakeCount={mistakeCount}
