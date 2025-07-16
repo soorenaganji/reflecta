@@ -94,8 +94,7 @@ export default function Step4() {
         <div className="text-xl font-bold">{t("test_finished")}</div>
         <div>
           <pre className="text-left ">{t("your_score")}</pre>
-          <p>
-            Forward:{" "}
+          <p className="text-center p-2 rounded-md bg-green-200 my-3 "  >
             {(result.phase1[0] +
               result.phase2[0] +
               result.phase3[0] +

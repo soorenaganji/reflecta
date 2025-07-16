@@ -5,6 +5,7 @@ import QuestionWrapper from "@/components/QuestionWrapper";
 import { useEffect, useState } from "react";
 import generateUserId from "@/utils/generateUserId";
 import { useLanguage } from "@/components/LanguageProvider";
+import normalizeGender from "@/utils/helper";
 
 export default function Step1() {
   const router = useRouter();
@@ -72,12 +73,12 @@ export default function Step1() {
                 <button
                   key={gender}
                   onClick={() => {
-                    setSelectedGender(gender);
-                    onNext(gender);
+                    setSelectedGender(normalizeGender(gender));
+                    onNext(normalizeGender(gender));
                   }}
                   className={`w-full px-4 py-2 rounded-xl border text-center transition duration-200 outline-none 
                     ${
-                      selectedGender === gender
+                      selectedGender === normalizeGender(gender)
                         ? "bg-white text-indigo-600 border-indigo-600 font-semibold"
                         : "bg-indigo-600 text-white border-transparent hover:bg-indigo-700"
                     }`}
