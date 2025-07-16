@@ -96,27 +96,23 @@ export default function Step4() {
           <pre className="text-left ">{t("your_score")}</pre>
           <p>
             Forward:{" "}
-            {result.phase1[0] +
+            {(result.phase1[0] +
               result.phase2[0] +
               result.phase3[0] +
               result.phase4[0] +
               result.phase5[0] +
               result.phase6[0] +
               result.phase7[0] +
-              result.phase8[0]}
-            /16
-          </p>
-          <p>
-            Backward:{" "}
-            {result.phase1[1] +
+              result.phase8[0] +
+              result.phase1[1] +
               result.phase2[1] +
               result.phase3[1] +
               result.phase4[1] +
               result.phase5[1] +
               result.phase6[1] +
               result.phase7[1] +
-              result.phase8[1]}
-            /16
+              result.phase8[1])/8 *25}
+            /100
           </p>
         </div>
         <button
