@@ -1,8 +1,8 @@
 export const translations = {
   fa: {
-    beforeStartTitle: "قبل از شروع...",
+    beforeStartTitle: "به آزمون حافظه عددی خوش آمدید",
     beforeStartDescription:
-      "لطفاً پیش از آغاز آزمون، راهنمای زیر را مطالعه کنید.",
+      "در هر مرحله اعدادی نمایش داده می‌شوند؛ آن‌ها را به همان ترتیب و با دقت تکرار کنید.",
     getStarted: "شروع",
     step1_code_label: "نام کاربری شما در آزمون قبلی چه بود؟",
     step1_gender_label: "جنسیت شما چیست؟",
@@ -40,9 +40,9 @@ export const translations = {
     finish: "پایان",
   },
   it: {
-    beforeStartTitle: "Prima di iniziare...",
+    beforeStartTitle: "Benvenuto al test di memoria numerica",
     beforeStartDescription:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum odio provident, excepturi consectetur fugit optio delectus facere esse incidunt sed autem repellendus ipsam quod laboriosam possimus corrupti a voluptatem cumque.",
+      "Vedrai sequenze di cifre. Memorizzale e ripetile nell'ordine esatto in un ambiente tranquillo.",
     getStarted: "Inizia",
     step1_code_label: "Qual era il tuo nome utente nel test precedente?",
     step1_gender_label: "Qual è il tuo genere?",
