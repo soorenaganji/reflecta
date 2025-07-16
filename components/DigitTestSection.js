@@ -7,8 +7,6 @@ export default function DigitTestSection({
   length,
   count,
   onFinish,
-  mistakeCount,
-  setMistakeCount,
   direction = "forward",
   generateSequence = generateUniqueDigitNumber,
 }) {
@@ -94,7 +92,6 @@ export default function DigitTestSection({
       toast.success(t("correct"));
     } else {
       setFeedback("Wrong");
-      setMistakeCount((prev) => prev + 1);
       toast.error(t("wrong"));
     }
   };

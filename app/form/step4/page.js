@@ -16,7 +16,6 @@ const SECTIONS = [
 ];
 
 export default function Step4() {
-  const MAX_MISTAKES = 3;
   const [task, setTask] = useState("forward");
   const [awaitingContinue, setAwaitingContinue] = useState(false);
   const [sectionIndex, setSectionIndex] = useState(0);
@@ -31,7 +30,6 @@ export default function Step4() {
     phase8: [0, 0],
   });
   const [isDone, setIsDone] = useState(false);
-  const [mistakeCount, setMistakeCount] = useState(0);
   const router = useRouter();
   const { t } = useLanguage();
   const usedSequences = useRef(new Set());
@@ -43,12 +41,10 @@ export default function Step4() {
       [key]: task === "forward" ? [score, prev[key][1]] : [prev[key][0], score],
     }));
 
-    if (mistakeCount >= MAX_MISTAKES) {
-      console.log("you reached max mistakes");
+    if (score === 0) {
       if (task === "forward") {
         setTask("backward");
         setSectionIndex(0);
-        setMistakeCount(0);
         setAwaitingContinue(true);
       } else {
         setIsDone(true);
@@ -61,7 +57,6 @@ export default function Step4() {
     } else if (task === "forward") {
       setTask("backward");
       setSectionIndex(0);
-      setMistakeCount(0);
       setAwaitingContinue(true);
     } else {
       setIsDone(true);
@@ -141,8 +136,6 @@ export default function Step4() {
         <>
           <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg min-h-[300px] flex items-center justify-center">
             <DigitTestSection
-              mistakeCount={mistakeCount}
-              setMistakeCount={setMistakeCount}
               key={`${task}-${sectionIndex}`}
               length={SECTIONS[sectionIndex].length}
               count={SECTIONS[sectionIndex].count}
