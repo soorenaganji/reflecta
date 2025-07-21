@@ -41,7 +41,7 @@ export const translations = {
     previous: "قبلی",
     next: "بعدی",
     backward_intro:
-      "آزمون معکوس به زودی آغاز می‌شود. باید ارقام نشان داده شده را به صورت معکوس بنویسید.",
+      "بخش معکوس در شرف آغاز است. پیش از آزمون اصلی یک پرسش تمرینی خواهید داشت که در امتیاز شما محاسبه نمی‌شود. باید ارقام نمایش داده شده را برعکس وارد کنید (مثلاً اگر \u00ab25\u00bb دیدید، باید \u00ab52\u00bb بنویسید).",
     finish: "پایان",
   },
   it: {
@@ -86,7 +86,7 @@ export const translations = {
     previous: "Precedente",
     next: "Avanti",
     backward_intro:
-    "Il test all'indietro inizier\u00e0 a breve. Devi scrivere le cifre mostrate al contrario.",
+      "Sta per iniziare la fase all'indietro. Prima del test principale vedrai una domanda di prova che non incide sul punteggio. Dovrai digitare le cifre al contrario (ad esempio, se vedi \"25\" dovrai inserire \"52\").",
     finish: "Fine",
   },
 };

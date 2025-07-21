@@ -17,8 +17,7 @@ const SECTIONS = [
 
 export default function Step4() {
   const [task, setTask] = useState("forward");
-  const [awaitingContinue, setAwaitingContinue] = useState(false);
-  const [practiceState, setPracticeState] = useState(null); // null | 'intro' | 'test' | 'done'
+  const [practiceState, setPracticeState] = useState(null); // null | 'backward-intro' | 'intro' | 'test' | 'done'
   const [sectionIndex, setSectionIndex] = useState(0);
   const [result, setResult] = useState({
     phase1: [0, 0],
@@ -46,8 +45,7 @@ export default function Step4() {
       if (task === "forward") {
         setTask("backward");
         setSectionIndex(0);
-        setPracticeState("intro");
-        setAwaitingContinue(false);
+        setPracticeState("backward-intro");
       } else {
         setIsDone(true);
       }
@@ -59,8 +57,7 @@ export default function Step4() {
     } else if (task === "forward") {
       setTask("backward");
       setSectionIndex(0);
-      setPracticeState("intro");
-      setAwaitingContinue(false);
+      setPracticeState("backward-intro");
     } else {
       setIsDone(true);
     }
@@ -106,6 +103,20 @@ export default function Step4() {
   }
 
   // فقط یه بخش فعاله
+  if (practiceState === "backward-intro") {
+    return (
+      <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
+        <p className="text-center">{t("backward_intro")}</p>
+        <button
+          className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
+          onClick={() => setPracticeState("intro")}
+        >
+          {t("continue")}
+        </button>
+      </div>
+    );
+  }
+
   if (practiceState === "intro") {
     return (
       <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
@@ -142,7 +153,6 @@ export default function Step4() {
           className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
           onClick={() => {
             setPracticeState(null);
-            setAwaitingContinue(true);
           }}
         >
           {t("continue")}
@@ -152,39 +162,22 @@ export default function Step4() {
   }
 
   return (
-    <>
-      {!awaitingContinue && (
-        <>
-          <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg min-h-[300px] flex items-center justify-center">
-            <DigitTestSection
-              key={`${task}-${sectionIndex}`}
-              length={SECTIONS[sectionIndex].length}
-              count={SECTIONS[sectionIndex].count}
-              onFinish={handleSectionFinish}
-              direction={task}
-              generateSequence={(len) => {
-                let seq;
-                do {
-                  seq = generateUniqueDigitNumber(len).join("");
-                } while (usedSequences.current.has(seq));
-                usedSequences.current.add(seq);
-                return seq.split("");
-              }}
-            />
-          </div>
-        </>
-      )}
-      {awaitingContinue && (
-        <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-2xl min-h-[300px] flex flex-col items-center justify-center space-y-4">
-          <p className="text-center">{t("backward_intro")}</p>
-          <button
-            className="bg-indigo-600 text-white px-4 py-2 rounded-xl transition duration-200 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-600"
-            onClick={() => setAwaitingContinue(false)}
-          >
-            {t("continue")}
-          </button>
-        </div>
-      )}
-    </>
+    <div className="p-6 max-w-md mx-auto bg-white shadow-md rounded-lg min-h-[300px] flex items-center justify-center">
+      <DigitTestSection
+        key={`${task}-${sectionIndex}`}
+        length={SECTIONS[sectionIndex].length}
+        count={SECTIONS[sectionIndex].count}
+        onFinish={handleSectionFinish}
+        direction={task}
+        generateSequence={(len) => {
+          let seq;
+          do {
+            seq = generateUniqueDigitNumber(len).join("");
+          } while (usedSequences.current.has(seq));
+          usedSequences.current.add(seq);
+          return seq.split("");
+        }}
+      />
+    </div>
   );
 }
